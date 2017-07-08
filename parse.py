@@ -22,8 +22,8 @@ def parse(fullList, ident):
              'encumbranceType': '',
              'objectKind': '',
              'objectPurpose': '',
-             'start': '0',
-             'limit': '10000'
+             'start': 0,
+             'limit': 10000
              }
     headers = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) ' \
               'Chrome/58.0.3029.110 YaBrowser/17.6.1.749 Yowser/2.5 Safari/537.36'
@@ -52,7 +52,7 @@ def parse(fullList, ident):
                     json.dump(res, outfile, sort_keys=True, indent=4, ensure_ascii=False) #в файл записываются по 10000 объектов
                 pagenumber += 1
                 step = 10000
-                filterLine['start'] = step + 10000
+                filterLine['start'] += step
             except requests.expections.HTTPError as err:
                 print('HTTP Error occured')
                 print('Response is: {content}'.format(content=err.response.content))
